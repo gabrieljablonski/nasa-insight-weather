@@ -1,5 +1,6 @@
 package com.nasa.api.model;
 
+import java.util.Map;
 import java.util.HashMap;
 
 public class SensorData {
@@ -10,7 +11,7 @@ public class SensorData {
         SPEED("m/s"),
         PRESSURE("Pa");
 
-        private static final HashMap<String, MeasurementUnit> reverseMapping = new HashMap<String, MeasurementUnit>();
+        private static final Map<String, MeasurementUnit> reverseMapping = new HashMap<String, MeasurementUnit>();
         private final String unit;
     
         private MeasurementUnit(String unit) {

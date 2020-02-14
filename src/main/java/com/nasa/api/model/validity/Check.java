@@ -16,7 +16,7 @@ public class Check {
         return hoursWithData;
     }
 
-    public boolean isValid() {
+    public boolean getValid() {
         return valid;
     }    
 
