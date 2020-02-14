@@ -2,29 +2,17 @@ package com.nasa.api.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ErrorResponse {
+public class ErrorResponse extends Response {
     
-    @SerializedName("status_code")
-    private final int statusCode;
     private final String error;
-    private final String message;
 
     public ErrorResponse(ResponseType responseType, String message) {
-        this.statusCode = responseType.getStatusCode();
+        super(responseType.getStatusCode(), message);
         this.error = responseType.toString();
-        this.message = message;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
     }
 
     public String getError() {
         return error;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public static ErrorResponse notFound(String message) {

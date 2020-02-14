@@ -4,32 +4,21 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-public class WeatherResponse {
+public class WeatherResponse extends Response {
 
-    @SerializedName("status_code")
-    private final int statusCode;
     @SerializedName("sol_keys")
     private final List<Integer> solKeys;
     @SerializedName("average_temperature")
     private final Double averageTemperature;
-    private final String message;
 
     public WeatherResponse(List<Integer> solKeys, Double averageTemperature, String message) {
-        this.statusCode = ResponseType.OK.getStatusCode();
+        super(ResponseType.OK.getStatusCode(), message);
         this.solKeys = solKeys;
         this.averageTemperature = averageTemperature;
-        this.message = message;
     }
 
     public WeatherResponse(List<Integer> solKeys, Double averageTemperature) {
-        this.statusCode = ResponseType.OK.getStatusCode();
-        this.solKeys = solKeys;
-        this.averageTemperature = averageTemperature;
-        this.message = "Request successful.";
-    }
-
-    public int getStatusCode() {
-        return statusCode;
+        this(solKeys, averageTemperature, "Request successful.");
     }
 
     public List<Integer> getSolKeys() {
@@ -38,10 +27,6 @@ public class WeatherResponse {
 
     public Double getAverageTemperature() {
         return averageTemperature;
-    }
-
-    public String getMessage() {
-        return message;
     }
     
 }
