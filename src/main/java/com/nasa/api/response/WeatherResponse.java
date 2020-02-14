@@ -11,14 +11,21 @@ public class WeatherResponse {
     @SerializedName("sol_keys")
     private final List<Integer> solKeys;
     @SerializedName("average_temperature")
-    private final int averageTemperature;
+    private final Double averageTemperature;
     private final String message;
 
-    public WeatherResponse(int statusCode, List<Integer> solKeys, int averageTemperature, String message) {
-        this.statusCode = statusCode;
+    public WeatherResponse(List<Integer> solKeys, Double averageTemperature, String message) {
+        this.statusCode = ResponseType.OK.getStatusCode();
         this.solKeys = solKeys;
         this.averageTemperature = averageTemperature;
         this.message = message;
+    }
+
+    public WeatherResponse(List<Integer> solKeys, Double averageTemperature) {
+        this.statusCode = ResponseType.OK.getStatusCode();
+        this.solKeys = solKeys;
+        this.averageTemperature = averageTemperature;
+        this.message = "Request successful.";
     }
 
     public int getStatusCode() {
@@ -29,7 +36,7 @@ public class WeatherResponse {
         return solKeys;
     }
 
-    public int getAverageTemperature() {
+    public Double getAverageTemperature() {
         return averageTemperature;
     }
 
