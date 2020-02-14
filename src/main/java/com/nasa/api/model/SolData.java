@@ -2,7 +2,13 @@ package com.nasa.api.model;
 
 import java.time.LocalDate;
 
+import com.nasa.api.model.compass.CompassData;
+
 public class SolData {
+
+    private enum Season {
+        WINTER, SPRING, SUMMER, FALL
+    }
 
     private final int key;
     private final Season season;

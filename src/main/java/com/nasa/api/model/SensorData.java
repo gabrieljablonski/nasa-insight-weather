@@ -1,8 +1,37 @@
 package com.nasa.api.model;
 
-import com.google.gson.Gson;
+import java.util.HashMap;
 
 public class SensorData {
+
+    public enum MeasurementUnit {
+
+        TEMPERATURE("°F"),
+        SPEED("m/s"),
+        PRESSURE("Pa");
+
+        private static final HashMap<String, MeasurementUnit> reverseMapping = new HashMap<String, MeasurementUnit>();
+        private final String unit;
+    
+        private MeasurementUnit(String unit) {
+            this.unit = unit;
+        }
+    
+        public String getUnit() {
+            return this.unit;
+        }
+
+        public static MeasurementUnit fromString(String string) {
+            return reverseMapping.get(string);
+        }
+
+        static {
+            for (MeasurementUnit unit : MeasurementUnit.values()) {
+                reverseMapping.put(unit.name(), unit);
+            }
+        }
+    
+    }
 
     private final MeasurementUnit unit;
     private final int sampleCount;       // `ct`
