@@ -33,7 +33,7 @@ public class InSightWeatherData {
     public Double getAverageTemperature(Integer sol) throws Exception {
         if (sol != null) {
             if (!this.getSolKeys().contains(sol)) {
-                throw new Exception("Sol key not found. Available sol keys: " + inSightWeatherData.getSolKeys().toString());
+                throw new Exception("Sol key not found. Available sol keys: " + this.getSolKeys().toString());
             }
             return this.getSolData()
                        .get(sol)
