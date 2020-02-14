@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class ValidityChecks {
     
-    private final int hoursRequired;
-    private final List<Integer> solsChecked;
+    private final int hoursRequired;                   // `sol_hours_required`
+    private final List<Integer> solsChecked;           // `sols_checked`
     private final Map<Integer, ValidityCheck> checks;
 
     public ValidityChecks(int hoursRequired, List<Integer> solsChecked, Map<Integer, ValidityCheck> checks) {

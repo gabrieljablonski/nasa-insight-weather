@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Check {
 
-    private final List<Integer> hoursWithData;
-    private final boolean valid;
+    private final List<Integer> hoursWithData;  // `sol_hours_with_data`
+    private final boolean valid;                // `valid`
 
     public Check(List<Integer> hoursWithData, boolean valid) {
         this.hoursWithData = hoursWithData;

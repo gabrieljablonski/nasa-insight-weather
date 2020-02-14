@@ -5,11 +5,11 @@ public class CompassDataPoint {
     private final int key;           // mirrors `CompassData.points.key` for utility
     private final int sampleCount;   // `ct`
     private final Double direction;  // `compass_degrees`
-    private final String point;      // ex. "N" for North, "ESE" for East-South-East
+    private final String point;      // `compass_point` ex. "N" for North, "ESE" for East-South-East
     // the positive-right (positive-east), horizontal component of a unit vector indicating the direction of the compass point
-    private final Double right;
+    private final Double right;      // `compass_right`
     // the positive-up (positive-north), vertical component of a unit vector indicating the direction of the compass point
-    private final Double up;         
+    private final Double up;         // `compass_up`
 
     public CompassDataPoint(int key, int sampleCount, Double direction, String point, Double right, Double up) {
         this.key = key;

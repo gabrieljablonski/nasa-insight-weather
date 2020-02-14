@@ -11,9 +11,9 @@ public class SolData {
     }
 
     private final int key;
-    private final Season season;
-    private final LocalDate firstUTC;  // time of first datum of any sensor
-    private final LocalDate lastUTC;   // time of last datum of any sensor
+    private final Season season;       // `Season`
+    private final LocalDate firstUTC;  // `First_UTC` time of first datum of any sensor
+    private final LocalDate lastUTC;   // `Last_UTC`  time of last datum of any sensor
     
     private final SensorData atmosphericTemperature;  // `AT`
     private final SensorData atmosphericPressure;     // `PRE`
