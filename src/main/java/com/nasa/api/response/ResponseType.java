@@ -16,7 +16,7 @@ public enum ResponseType {
     public String toString() {
         String[] tokens = this.name().toLowerCase().split("_");
 
-        for(int i=0; i<tokens.length; i++) {
+        for (int i=0; i<tokens.length; i++) {
             tokens[i] = tokens[i].substring(0, 1).toUpperCase() + tokens[i].substring(1);
         }
 

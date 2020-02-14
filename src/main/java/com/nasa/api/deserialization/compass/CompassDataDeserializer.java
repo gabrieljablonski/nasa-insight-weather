@@ -27,7 +27,7 @@ public class CompassDataDeserializer implements JsonDeserializer<CompassData> {
         object.remove("most_common");
         Map<Integer, CompassDataPoint> points = new HashMap<Integer, CompassDataPoint>();
 
-        for(Map.Entry<String, JsonElement> entry : object.entrySet()) {
+        for (Map.Entry<String, JsonElement> entry : object.entrySet()) {
             int key = Integer.parseInt(entry.getKey());
             JsonObject value = entry.getValue().getAsJsonObject();
             value.addProperty("key", key);

@@ -25,7 +25,7 @@ public class ValidityChecksDeserializer implements JsonDeserializer<ValidityChec
         int hoursRequired = object.get("sol_hours_required").getAsInt();
 
         List<Integer> solsChecked = new ArrayList<Integer>();
-        for(JsonElement element : object.get("sols_checked").getAsJsonArray()) {
+        for (JsonElement element : object.get("sols_checked").getAsJsonArray()) {
             solsChecked.add(element.getAsInt());
         }
 
@@ -33,7 +33,7 @@ public class ValidityChecksDeserializer implements JsonDeserializer<ValidityChec
         object.remove("sols_checked");
 
         Map<Integer, ValidityCheck> checks = new HashMap<Integer, ValidityCheck>();
-        for(Map.Entry<String, JsonElement> entry : object.entrySet()) {
+        for (Map.Entry<String, JsonElement> entry : object.entrySet()) {
             int key = Integer.parseInt(entry.getKey());
             JsonObject value = entry.getValue().getAsJsonObject();
             value.addProperty("key", key);

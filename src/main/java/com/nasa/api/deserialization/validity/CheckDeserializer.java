@@ -19,7 +19,7 @@ public class CheckDeserializer implements JsonDeserializer<Check> {
         JsonObject object = json.getAsJsonObject();
 
         List<Integer> hoursWithData = new ArrayList<Integer>();
-        for(JsonElement element : object.get("sol_hours_with_data").getAsJsonArray()) {
+        for (JsonElement element : object.get("sol_hours_with_data").getAsJsonArray()) {
             hoursWithData.add(element.getAsInt());
         }
 
