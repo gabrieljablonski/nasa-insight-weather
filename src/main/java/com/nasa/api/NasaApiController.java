@@ -51,7 +51,6 @@ public class NasaApiController {
             return ErrorResponse.notFound(e.getMessage());
         }
 
-        solKeys.add(sol);
         return new WeatherResponse(solKeys, temperature);
     }
 
