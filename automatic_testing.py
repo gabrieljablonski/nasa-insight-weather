@@ -56,7 +56,7 @@ def test_with_no_sol(nasa_data, port):
     print('\n--Calculated average temperatures:')
     print(f"NASA: {nasa_average_temperature:.3f}")
     print(f"Local: {local_average_temperature:.3f}")
-    assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch\n'
+    assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch'
 
 def test_with_sol(nasa_data, port):
     sol_keys = nasa_data.get('sol_keys')
@@ -83,7 +83,7 @@ def test_with_sol(nasa_data, port):
         print(f"Local: {local_average_temperature}")
         print('-'*30)
 
-        assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch\n'
+        assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch'
 
 
 def test_with_invalid_sol(port):
@@ -92,7 +92,7 @@ def test_with_invalid_sol(port):
     local_data = call_local_api(port, sol=random_invalid_sol)
     print('\nLocal data:')
     print(dumps(local_data))
-    assert local_data.get('status_code') == 405, 'Expected 404 Not Found error\n'
+    assert local_data.get('status_code') == 404, 'Expected 404 Not Found error'
 
 
 
@@ -110,10 +110,10 @@ def main(port, api_key):
         print('Testing average temperature for whole week')
         test_with_no_sol(nasa_data.copy(), port)
         print('\n==Test passed')
-        print('-'*50)
     except AssertionError as e:
         success[0] = False
         print(f"\nTest failed: {e}")
+    print('-'*50)
 
     try:
         # test with specified sol
@@ -122,11 +122,10 @@ def main(port, api_key):
         print('Testing average temperature for each sol available')
         test_with_sol(nasa_data.copy(), port)
         print('\n==Test passed')
-        print('-'*50)
     except AssertionError as e:
         success[1] = False
         print(f"Test failed: {e}")
-
+    print('-'*50)
 
     try:
         # test with invalid sol
@@ -135,10 +134,10 @@ def main(port, api_key):
         print('Testing request with invalid sol')
         test_with_invalid_sol(port)
         print('\n==Test passed')
-        print('-'*50)
     except AssertionError as e:
         success[2] = False
         print(f"\nTest failed: {e}")
+    print('-'*50)
     
     if all(success):
         print('All tests were successful!\n\n')
