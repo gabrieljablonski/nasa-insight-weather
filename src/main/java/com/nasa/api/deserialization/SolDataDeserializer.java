@@ -33,15 +33,15 @@ public class SolDataDeserializer implements JsonDeserializer<SolData> {
         
         try {
             object.get("AT").getAsJsonObject().addProperty("unit", "TEMPERATURE");
-            atmosphericPressure = Deserializer.gson.fromJson(object.get("AT"), SensorData.class);
+            atmosphericTemperature = Deserializer.gson.fromJson(object.get("AT"), SensorData.class);
         } catch (Exception e) {
-            atmosphericPressure = null;
+            atmosphericTemperature = null;
         }
         try {
             object.get("PRE").getAsJsonObject().addProperty("unit", "PRESSURE");
-            atmosphericTemperature = Deserializer.gson.fromJson(object.get("PRE"), SensorData.class);
+            atmosphericPressure = Deserializer.gson.fromJson(object.get("PRE"), SensorData.class);
         } catch (Exception e) {
-            atmosphericTemperature = null;
+            atmosphericPressure = null;
         }
         try {
             object.get("HWS").getAsJsonObject().addProperty("unit", "SPEED");
