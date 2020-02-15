@@ -49,7 +49,7 @@ public class InSightWeatherApi {
         return response.toString();
     }
 
-    private static InSightWeatherData makeRequest() throws IOException {
+    private static InSightWeatherData makeRequest() throws Exception {
         String uri = String.format("%s%s/?api_key=%s&feedtype=%s&ver=%s", nasaApiPrefix, inSightWeatherEndpoint, apiKey, feedType, version);
         URL url = new URL(uri);
         
@@ -61,17 +61,15 @@ public class InSightWeatherApi {
             String result = parseHTTPResponse(con);
             return Deserializer.gson.fromJson(result, InSightWeatherData.class);
 		}
-        return null;
+        throw new Exception("HTTP response code " + responseCode);
     }
 
-    public static Double getAverageTemperature(Integer sol) throws Exception {
-        InSightWeatherData inSightWeatherData = makeRequest();
-
-        if (inSightWeatherData == null) {
-            throw new Exception("Failed to retrieve inSight Weather data");
+    public static InSightWeatherData getInSightWeatherData() throws Exception {
+        try {
+            return makeRequest();
+        } catch (Exception e) {
+            throw new Exception("Failed to retrieve inSight Weather data: " + e.getMessage());
         }
-
-        return inSightWeatherData.getAverageTemperature(sol);
     }
 
 }
