@@ -2,7 +2,6 @@ package com.nasa.api;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.naming.NameNotFoundException;
@@ -22,10 +21,15 @@ public class NasaApiController {
     private final static Logger logger = Logger.getLogger(NasaApiController.class.getName());
 
     @GetMapping("/nasa/temperature")
-    public Response temperature(@RequestParam(value = "sol", required = false) Integer sol) {
-        logger.log(Level.INFO, "Request received on /nasa/temperature");
+    public Response temperature(@RequestParam(value = "sol", required = false) Integer sol,
+            @RequestParam(value = "force_cache_expire", defaultValue = "false") boolean forceCacheExpire) {
+        logger.info("Request received on /nasa/temperature");
         String loggingMessage = sol != null ? String.format("Data requested for sol %d", sol) : "No sol especified";
-        logger.log(Level.INFO, loggingMessage);
+        logger.info(loggingMessage);
+
+        if (forceCacheExpire) {
+            InSightWeatherApi.forceCacheExpire();
+        }
 
         InSightWeatherData inSightWeatherData;
         try {
@@ -50,7 +54,7 @@ public class NasaApiController {
             e.printStackTrace();
             return ErrorResponse.notFound(e.getMessage());
         }
-
+        logger.info("Returning average temperature: " + temperature);
         return new WeatherResponse(solKeys, temperature);
     }
 

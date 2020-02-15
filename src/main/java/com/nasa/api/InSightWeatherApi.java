@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import com.nasa.api.deserialization.Deserializer;
 import com.nasa.api.model.InSightWeatherData;
@@ -15,12 +16,17 @@ import com.nasa.api.model.InSightWeatherData;
 @Component
 public class InSightWeatherApi {
 
+    private final static Logger logger = Logger.getLogger(InSightWeatherApi.class.getName());
+
+    private static int cacheExpiration;
+    private static Cache cachedInSightWeatherData = new Cache(cacheExpiration);
+
     private static String nasaApiPrefix;
     private static String inSightWeatherEndpoint;
 
     private static String apiKey;
-    public static final String feedType = "json";
-    public static final String version = "1.0";
+    private static final String feedType = "json";
+    private static final String version = "1.0";
 
     @Value("${nasa.api.prefix}")
     public void setNasaApiPrefix(String prefix) {
@@ -35,6 +41,11 @@ public class InSightWeatherApi {
     @Value("${nasa.api.default-key}")
     public void setApiKey(String key) {
         apiKey = key;
+    }
+
+    @Value("${nasa.api.cache.expiration}")
+    public void setCacheExpiration(String expiration) {
+        cacheExpiration = Integer.parseInt(expiration);
     }
 
     private static String parseHTTPResponse(HttpURLConnection con) throws IOException {
@@ -64,12 +75,23 @@ public class InSightWeatherApi {
         throw new Exception("HTTP response code " + responseCode);
     }
 
+    public static void forceCacheExpire() {
+        logger.info("Force expiring cache");
+        cachedInSightWeatherData.forceExpire();
+    }
+
     public static InSightWeatherData getInSightWeatherData() throws Exception {
-        try {
-            return makeRequest();
-        } catch (Exception e) {
-            throw new Exception("Failed to retrieve inSight Weather data: " + e.getMessage());
+        if (cachedInSightWeatherData.isCacheExpired()) {
+            logger.info("Cached data expired. Retrieving new data");
+            try {
+                cachedInSightWeatherData.cacheData(makeRequest());
+            } catch (Exception e) {
+                throw new Exception("Failed to retrieve inSight Weather data: " + e.getMessage());
+            }
+        } else {
+            logger.info("Using cached data");
         }
+        return (InSightWeatherData) cachedInSightWeatherData.getData();
     }
 
 }
