@@ -1,7 +1,5 @@
 package com.nasa.api.response;
 
-import com.google.gson.annotations.SerializedName;
-
 public class ErrorResponse extends Response {
     
     private final String error;
