@@ -18,8 +18,7 @@ public class InSightWeatherApi {
 
     private final static Logger logger = Logger.getLogger(InSightWeatherApi.class.getName());
 
-    private static int cacheExpiration;
-    private static Cache cachedInSightWeatherData = new Cache(cacheExpiration);
+    private static Cache cachedInSightWeatherData = new Cache();
 
     private static String nasaApiPrefix;
     private static String inSightWeatherEndpoint;
@@ -45,7 +44,7 @@ public class InSightWeatherApi {
 
     @Value("${nasa.api.cache.expiration}")
     public void setCacheExpiration(String expiration) {
-        cacheExpiration = Integer.parseInt(expiration);
+        cachedInSightWeatherData.setCacheExpiration(Integer.parseInt(expiration));
     }
 
     private static String parseHTTPResponse(HttpURLConnection con) throws IOException {

@@ -43,7 +43,7 @@ public class Cache {
 
     public boolean isCacheExpired() {
         return lastCached == null || data == null? 
-            true : lastCached.plusSeconds(cacheExpiration).compareTo(Instant.now()) > 0;
+            true : lastCached.plusSeconds(cacheExpiration).compareTo(Instant.now()) <= 0;
     }
 
     public void forceExpire() {

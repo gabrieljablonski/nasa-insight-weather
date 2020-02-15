@@ -37,13 +37,8 @@ public class InSightWeatherData {
             if (!this.getSolKeys().contains(sol)) {
                 throw new NameNotFoundException("Sol key not found. Available sol keys: " + this.getSolKeys().toString());
             }
-            if (this.getSolData().get(sol).getAtmosphericTemperature() == null) {
-                return null;
-            }
-            return this.getSolData()
-                       .get(sol)
-                       .getAtmosphericTemperature()
-                       .getSampleAverage();
+            SensorData at = this.getSolData().get(sol).getAtmosphericTemperature();
+            return at == null? null : at.getSampleAverage();
         }
 
         Double temperatureSum = 0.;
