@@ -18,7 +18,7 @@ Two optional parameters are available:
 
 Example call for sol 430, with local API running on `localhost:8080`:
 
-```sh
+```
     GET http://localhost:8080/nasa/temperature?sol=430&force_cache_expire=true
 ```
 
