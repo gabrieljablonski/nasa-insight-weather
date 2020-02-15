@@ -33,7 +33,6 @@ public class Deserializer {
         builder.registerTypeAdapter(SolData.class, new SolDataDeserializer());
         builder.registerTypeAdapter(InSightWeatherData.class, new InSightWeatherDataDeserializer());
 
-
         gson = builder.create();
     }
 

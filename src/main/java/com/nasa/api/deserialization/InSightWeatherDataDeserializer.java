@@ -36,7 +36,6 @@ public class InSightWeatherDataDeserializer implements JsonDeserializer<InSightW
             int key = Integer.parseInt(entry.getKey());
             JsonObject value = entry.getValue().getAsJsonObject();
             value.addProperty("key", key);
-
             solData.put(key, Deserializer.gson.fromJson(value, SolData.class));
         }
 
