@@ -113,7 +113,7 @@ def main(port, api_key):
         print('-'*50)
     except AssertionError as e:
         success[0] = False
-        print(e)
+        print(f"\nTest failed: {e}")
 
     try:
         # test with specified sol
@@ -125,7 +125,8 @@ def main(port, api_key):
         print('-'*50)
     except AssertionError as e:
         success[1] = False
-        print(e)
+        print(f"Test failed: {e}")
+
 
     try:
         # test with invalid sol
@@ -137,7 +138,7 @@ def main(port, api_key):
         print('-'*50)
     except AssertionError as e:
         success[2] = False
-        print(e)
+        print(f"\nTest failed: {e}")
     
     if all(success):
         print('All tests were successful!\n\n')
