@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.decimal4j.util.DoubleRounder;
+
 public class WeatherResponse extends Response {
 
     @SerializedName("sol_keys")
@@ -14,7 +16,7 @@ public class WeatherResponse extends Response {
     public WeatherResponse(List<Integer> solKeys, Double averageTemperature, String message) {
         super(ResponseType.OK.getStatusCode(), message);
         this.solKeys = solKeys;
-        this.averageTemperature = averageTemperature;
+        this.averageTemperature = DoubleRounder.round(averageTemperature, 3);
     }
 
     public WeatherResponse(List<Integer> solKeys, Double averageTemperature) {
