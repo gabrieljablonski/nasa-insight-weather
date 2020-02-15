@@ -38,7 +38,7 @@ public class InSightWeatherApi {
         inSightWeatherEndpoint = endpoint;
     }
 
-    @Value("${nasa.api.default-key}")
+    @Value("${nasa.api.key}")
     public void setApiKey(String key) {
         apiKey = key;
     }
