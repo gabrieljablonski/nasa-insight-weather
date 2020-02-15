@@ -140,7 +140,7 @@ def main(port, api_key):
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(description='Test the NASA API wrapper.')
     parser.add_argument('--port', type=int, default=DEFAULT_PORT, help='Port where local API is running')
     parser.add_argument('--api-key', type=str, default=DEFAULT_API_KEY, help='API key for NASA API calls')
 
