@@ -83,7 +83,41 @@ This implementation also offers basic in-memory caching features ([`com.nasa.api
 
 ## Running
 
-soon™
+Running requires [JDK 13](https://www.oracle.com/java/technologies/javase-jdk13-downloads.html). Make sure the `JAVA_HOME` environment variable is set correctly.
+
+To run the program, first clone and open the repository:
+
+```sh
+    git clone https://github.com/gabrieljablonski/nasa-api.git
+    cd /nasa-api
+```
+
+On Linux, prepare the maven script and run it:
+
+```sh
+    sudo chmod +x ./mvnw
+    sudo ./mvnw spring-boot:run
+```
+
+On Windows, simply run the script:
+
+```ps
+    .\mvnw spring-boot:run
+```
+
+Wait for the dependencies to be fetched. The project will then be compiled and run.
+
+When started, the API can be accessed by opening a browser and going to [`http://localhost:8080/nasa/temperature`](http://localhost:8080/nasa/temperature). The optional parameters can then be set as described in the [`Functionality`](#Functionality) section.
+
+### API Parameters Customization
+
+The [`application.properties`](/src/main/resources/application.properties) file presents 3 parameters that can be customized, described below.
+
+- `server.port` - The port the API will run on (defaults to `8080`)
+- `nasa.api.key` - The API key that will be used on requests to NASA's API (defaults to `DEMO_KEY`)
+- `nasa.api.cache.expiration` - The maximum time in seconds cached data will stay available (defaults to `600`)
+
+Other parameters should not be changed. After the new parameters are set, run the project again.
 
 ## Automatized Testing
 
@@ -93,7 +127,7 @@ A testing script ([`automatic_testing.py`](/automatic_testing.py)) is available 
 - Sol specified and available
 - Sol specified but unavailable
 
-The script requires Python 3.6+.
+The script requires [Python 3.6+](https://www.python.org/downloads/).
 
 To run it, first change into the project directory and setup a virtual environment.
 
