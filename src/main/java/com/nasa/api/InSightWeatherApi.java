@@ -76,7 +76,7 @@ public class InSightWeatherApi {
     }
 
     public static void forceCacheExpire() {
-        logger.info("Force expiring cache");
+        logger.info("Force-expiring cache");
         cachedInSightWeatherData.forceExpire();
     }
 
