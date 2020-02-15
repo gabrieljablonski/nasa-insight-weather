@@ -1,5 +1,6 @@
 .vscode/
 target/
+venv/
 .env
 .project
 .settings
