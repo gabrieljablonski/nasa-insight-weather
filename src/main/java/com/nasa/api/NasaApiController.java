@@ -55,6 +55,10 @@ public class NasaApiController {
             logger.warning(e.getMessage());
             return ErrorResponse.notFound(e.getMessage());
         }
+        if (temperature == null) {
+            logger.info("Atmospheric data not available. Returning null value");
+            return new WeatherResponse(solKeys, temperature, "Sol key exists, but atmospheric temperature data is not available");
+        }
         logger.info("Returning average temperature: " + DoubleRounder.round(temperature, 3));
         return new WeatherResponse(solKeys, temperature);
     }
