@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.naming.NameNotFoundException;
 
+import org.decimal4j.util.DoubleRounder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,7 +55,7 @@ public class NasaApiController {
             logger.warning(e.getMessage());
             return ErrorResponse.notFound(e.getMessage());
         }
-        logger.info("Returning average temperature: " + temperature);
+        logger.info("Returning average temperature: " + DoubleRounder.round(temperature, 3));
         return new WeatherResponse(solKeys, temperature);
     }
 
