@@ -65,7 +65,7 @@ Example for failed request for unavailable sol:
 { 
     "error": "NotFound",
     "status_code": 404,
-    "message": "Sol key not found. Available sol keys: [427, 428, 429, 430, 431, 432, 433]"
+    "message": "Sol key not found. Available sol keys: [427, 428, 429, 430, 431, 432, 433]."
 }
 ```
 
