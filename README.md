@@ -1,6 +1,6 @@
-# NASA InSight API Java wrapper
+# NASA InSight Weather Java API wrapper
 
-Java wrapper for NASA's [InSight: Mars Weather Service API](https://api.nasa.gov/assets/insight/InSight%20Weather%20API%20Documentation.pdf).
+Java API wrapper for NASA's [InSight: Mars Weather Service API](https://api.nasa.gov/assets/insight/InSight%20Weather%20API%20Documentation.pdf).
 
 Based on the [Spring Boot RESTful web service](https://spring.io/guides/gs/rest-service/).
 
