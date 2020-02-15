@@ -70,7 +70,7 @@ public class InSightWeatherApi {
         if (responseCode == HttpURLConnection.HTTP_OK) {
             String result = parseHTTPResponse(con);
             return Deserializer.gson.fromJson(result, InSightWeatherData.class);
-		}
+        }
         throw new Exception("HTTP response code " + responseCode);
     }
 
