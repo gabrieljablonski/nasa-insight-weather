@@ -3,6 +3,8 @@ package com.nasa.api.model;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.NameNotFoundException;
+
 import com.nasa.api.model.validity.ValidityChecks;
 
 public class InSightWeatherData {
@@ -30,10 +32,10 @@ public class InSightWeatherData {
         return validityChecks;
     }
 
-    public Double getAverageTemperature(Integer sol) throws Exception {
+    public Double getAverageTemperature(Integer sol) throws NameNotFoundException {
         if (sol != null) {
             if (!this.getSolKeys().contains(sol)) {
-                throw new Exception("Sol key not found. Available sol keys: " + this.getSolKeys().toString());
+                throw new NameNotFoundException("Sol key not found. Available sol keys: " + this.getSolKeys().toString());
             }
             return this.getSolData()
                        .get(sol)
