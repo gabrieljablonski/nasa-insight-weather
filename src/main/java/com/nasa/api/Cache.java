@@ -4,20 +4,20 @@ import java.time.Instant;
 
 public class Cache {
 
-    private static int DEFAULT_CACHE_EXPIRATION = 600;
+    private static int DEFAULT_EXPIRATION = 600;
 
     private Object data;
     private Instant lastCached;
-    private int cacheExpiration;  // in seconds
+    private int expiration;  // in seconds
 
-    public Cache(int cacheExpiration) {
+    public Cache(int expiration) {
         this.data = null;
         this.lastCached = null;
-        this.cacheExpiration = cacheExpiration;
+        this.expiration = expiration;
     }
 
     public Cache() {
-        this(DEFAULT_CACHE_EXPIRATION);
+        this(DEFAULT_EXPIRATION);
     }
 
     public Object getData() {
@@ -33,17 +33,17 @@ public class Cache {
         return lastCached;
     }
 
-    public int getCacheExpiration() {
-        return cacheExpiration;
+    public int getExpiration() {
+        return expiration;
     }
 
-    public void setCacheExpiration(int cacheExpiration) {
-        this.cacheExpiration = cacheExpiration;
+    public void setExpiration(int expiration) {
+        this.expiration = expiration;
     }
 
-    public boolean isCacheExpired() {
+    public boolean isExpired() {
         return lastCached == null || data == null? 
-            true : lastCached.plusSeconds(cacheExpiration).compareTo(Instant.now()) <= 0;
+            true : lastCached.plusSeconds(expiration).compareTo(Instant.now()) <= 0;
     }
 
     public void forceExpire() {

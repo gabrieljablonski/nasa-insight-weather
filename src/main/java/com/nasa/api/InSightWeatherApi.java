@@ -44,7 +44,7 @@ public class InSightWeatherApi {
 
     @Value("${nasa.api.cache.expiration}")
     public void setCacheExpiration(String expiration) {
-        cachedInSightWeatherData.setCacheExpiration(Integer.parseInt(expiration));
+        cachedInSightWeatherData.setExpiration(Integer.parseInt(expiration));
     }
 
     private static String parseHTTPResponse(HttpURLConnection con) throws IOException {
@@ -80,7 +80,7 @@ public class InSightWeatherApi {
     }
 
     public static InSightWeatherData getInSightWeatherData() throws Exception {
-        if (cachedInSightWeatherData.isCacheExpired()) {
+        if (cachedInSightWeatherData.isExpired()) {
             logger.info("Cached data expired. Retrieving new data");
             try {
                 cachedInSightWeatherData.cacheData(makeRequest());
