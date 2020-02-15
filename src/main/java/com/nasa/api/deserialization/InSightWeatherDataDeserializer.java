@@ -26,10 +26,7 @@ public class InSightWeatherDataDeserializer implements JsonDeserializer<InSightW
             solKeys.add(element.getAsInt());
         }
 
-        ArrayList<ValidityChecks> validityChecks = new ArrayList<>();
-        for (JsonElement element : object.get("validity_checks").getAsJsonArray()) {
-            validityChecks.add(Deserializer.gson.fromJson(element, ValidityChecks.class));
-        }
+        ValidityChecks validityChecks = Deserializer.gson.fromJson(object.get("validity_checks"), ValidityChecks.class);
 
         object.remove("sol_keys");
         object.remove("validity_checks");

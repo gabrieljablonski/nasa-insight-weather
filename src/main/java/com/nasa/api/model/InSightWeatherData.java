@@ -11,10 +11,10 @@ public class InSightWeatherData {
 
     private final Map<Integer, SolData> solData;
     private final List<Integer> solKeys;
-    private final List<ValidityChecks> validityChecks;
+    private final ValidityChecks validityChecks;
 
     public InSightWeatherData(Map<Integer, SolData> solData, List<Integer> solKeys,
-                              List<ValidityChecks> validityChecks) {
+                              ValidityChecks validityChecks) {
         this.solData = solData;
         this.solKeys = solKeys;
         this.validityChecks = validityChecks;
@@ -28,7 +28,7 @@ public class InSightWeatherData {
         return solKeys;
     }
 
-    public List<ValidityChecks> getValidityChecks() {
+    public ValidityChecks getValidityChecks() {
         return validityChecks;
     }
 
