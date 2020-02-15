@@ -142,7 +142,7 @@ def main(port, api_key):
     if all(success):
         print('All tests were successful!\n\n')
     else:
-        print('Not all tests were successful.')
+        print('Not all tests were successful.\n\n')
 
 if __name__ == "__main__":
     import argparse
