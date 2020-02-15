@@ -10,7 +10,7 @@ public class WeatherResponse extends Response {
 
     @SerializedName("sol_keys")
     private final List<Integer> solKeys;
-    @SerializedName("average_temperature")
+    @SerializedName("average_temperature")  // although the task example uses camel case, snake case is preferred for json
     private final Double averageTemperature;
 
     public WeatherResponse(List<Integer> solKeys, Double averageTemperature, String message) {
