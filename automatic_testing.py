@@ -56,7 +56,7 @@ def test_with_no_sol(nasa_data, port):
     print('\n--Calculated average temperatures:')
     print(f"NASA: {nasa_average_temperature:.3f}")
     print(f"Local: {local_average_temperature:.3f}")
-    assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch'
+    assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch\n'
 
 def test_with_sol(nasa_data, port):
     sol_keys = nasa_data.get('sol_keys')
@@ -83,7 +83,7 @@ def test_with_sol(nasa_data, port):
         print(f"Local: {local_average_temperature}")
         print('-'*30)
 
-        assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch'
+        assert nasa_average_temperature == local_average_temperature, 'Average temperature mismatch\n'
 
 
 def test_with_invalid_sol(port):
@@ -92,7 +92,7 @@ def test_with_invalid_sol(port):
     local_data = call_local_api(port, sol=random_invalid_sol)
     print('\nLocal data:')
     print(dumps(local_data))
-    assert local_data.get('status_code') == 404, 'Expected 404 Not Found error'
+    assert local_data.get('status_code') == 405, 'Expected 404 Not Found error\n'
 
 
 
@@ -102,6 +102,7 @@ def main(port, api_key):
     print('NASA data:')
     print(dumps(nasa_data))
 
+    success = [True, True, True]
     try:
         # test with no specified sol
         print()
@@ -111,6 +112,7 @@ def main(port, api_key):
         print('\n==Test passed')
         print('-'*50)
     except AssertionError as e:
+        success[0] = False
         print(e)
 
     try:
@@ -122,6 +124,7 @@ def main(port, api_key):
         print('\n==Test passed')
         print('-'*50)
     except AssertionError as e:
+        success[1] = False
         print(e)
 
     try:
@@ -133,9 +136,13 @@ def main(port, api_key):
         print('\n==Test passed')
         print('-'*50)
     except AssertionError as e:
+        success[2] = False
         print(e)
-        
-    print('All tests were successful!\n\n')
+    
+    if all(success):
+        print('All tests were successful!\n\n')
+    else:
+        print('Not all tests were successful.')
 
 if __name__ == "__main__":
     import argparse
