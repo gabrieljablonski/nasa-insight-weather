@@ -35,7 +35,7 @@ public class NasaApiController {
         try {
             inSightWeatherData = InSightWeatherApi.getInSightWeatherData();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
             return ErrorResponse.internalError(e.getMessage());
         }
 
@@ -51,7 +51,7 @@ public class NasaApiController {
         try {
             temperature = inSightWeatherData.getAverageTemperature(sol);
         } catch (NameNotFoundException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
             return ErrorResponse.notFound(e.getMessage());
         }
         logger.info("Returning average temperature: " + temperature);
