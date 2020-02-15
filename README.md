@@ -113,9 +113,9 @@ When started, the API can be accessed by opening a browser and going to [`http:/
 
 The [`application.properties`](/src/main/resources/application.properties) file presents 3 parameters that can be customized, described below.
 
-- `server.port` - The port the API will run on (defaults to `8080`)
-- `nasa.api.key` - The API key that will be used on requests to NASA's API (defaults to `DEMO_KEY`)
-- `nasa.api.cache.expiration` - The maximum time in seconds cached data will stay available (defaults to `600`)
+- `server.port` - The port the API will run on (defaults to `8080`).
+- `nasa.api.key` - The API key that will be used on requests to NASA's API (defaults to `DEMO_KEY`).
+- `nasa.api.cache.expiration` - The maximum time in seconds cached data will stay available (defaults to `600`).
 
 Other parameters should not be changed. After the new parameters are set, run the project again.
 
@@ -123,9 +123,9 @@ Other parameters should not be changed. After the new parameters are set, run th
 
 A testing script ([`automatic_testing.py`](/automatic_testing.py)) is available to test the three different types of responses: 
 
-- No specified sol
-- Sol specified and available
-- Sol specified but unavailable
+- No specified sol.
+- Sol specified and available.
+- Sol specified but unavailable.
 
 The script requires [Python 3.6+](https://www.python.org/downloads/).
 
@@ -149,8 +149,8 @@ On Windows:
 
 The script offers two optional command line arguments:
 
-- `port` - The port in which the local API is running (defaults to `8080`)
-- `api-key` - The API key for making NASA API calls (defaults to `DEMO_KEY`)
+- `port` - The port in which the local API is running (defaults to `8080`).
+- `api-key` - The API key for making NASA API calls (defaults to `DEMO_KEY`).
 
 Running on Linux:
 
