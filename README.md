@@ -1,4 +1,4 @@
-# NASA API Java wrapper
+# NASA InSight API Java wrapper
 
 Java wrapper for NASA's [InSight: Mars Weather Service API](https://api.nasa.gov/assets/insight/InSight%20Weather%20API%20Documentation.pdf).
 
