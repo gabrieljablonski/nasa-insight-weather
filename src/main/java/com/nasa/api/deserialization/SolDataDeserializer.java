@@ -26,14 +26,34 @@ public class SolDataDeserializer implements JsonDeserializer<SolData> {
         Instant firstUTC = Instant.parse(object.get("First_UTC").getAsString());
         Instant lastUTC = Instant.parse(object.get("Last_UTC").getAsString());
 
-        object.get("AT").getAsJsonObject().addProperty("unit", "TEMPERATURE");
-        object.get("PRE").getAsJsonObject().addProperty("unit", "PRESSURE");
-        object.get("HWS").getAsJsonObject().addProperty("unit", "SPEED");
-
-        SensorData atmosphericPressure = Deserializer.gson.fromJson(object.get("AT"), SensorData.class);
-        SensorData atmosphericTemperature = Deserializer.gson.fromJson(object.get("PRE"), SensorData.class);
-        SensorData horizontalWindSpeed = Deserializer.gson.fromJson(object.get("HWS"), SensorData.class);
-        CompassData windDirection = Deserializer.gson.fromJson(object.get("WD"), CompassData.class);
+        SensorData atmosphericPressure;
+        SensorData atmosphericTemperature;
+        SensorData horizontalWindSpeed;
+        CompassData windDirection;
+        
+        try {
+            object.get("AT").getAsJsonObject().addProperty("unit", "TEMPERATURE");
+            atmosphericPressure = Deserializer.gson.fromJson(object.get("AT"), SensorData.class);
+        } catch (Exception e) {
+            atmosphericPressure = null;
+        }
+        try {
+            object.get("PRE").getAsJsonObject().addProperty("unit", "PRESSURE");
+            atmosphericTemperature = Deserializer.gson.fromJson(object.get("PRE"), SensorData.class);
+        } catch (Exception e) {
+            atmosphericTemperature = null;
+        }
+        try {
+            object.get("HWS").getAsJsonObject().addProperty("unit", "SPEED");
+            horizontalWindSpeed = Deserializer.gson.fromJson(object.get("HWS"), SensorData.class);
+        } catch (Exception e) {
+            horizontalWindSpeed = null;
+        }
+        try {
+            windDirection = Deserializer.gson.fromJson(object.get("WD"), CompassData.class);
+        } catch (Exception e) {
+            windDirection = null;
+        }
 
         SolData solData = new SolData(key, season, firstUTC, lastUTC, atmosphericTemperature, atmosphericPressure, horizontalWindSpeed, windDirection);
         return solData;

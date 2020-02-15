@@ -37,17 +37,23 @@ public class InSightWeatherData {
             if (!this.getSolKeys().contains(sol)) {
                 throw new NameNotFoundException("Sol key not found. Available sol keys: " + this.getSolKeys().toString());
             }
+            if (this.getSolData().get(sol).getAtmosphericTemperature() == null) {
+                throw new NameNotFoundException("Sol key exists, but data is not available");
+            }
             return this.getSolData()
                        .get(sol)
                        .getAtmosphericTemperature()
                        .getSampleAverage();
         }
 
-        Double averageTemperature = 0.;
+        Double temperatureSum = 0.;
+        int sampleCount = 0;
         for (SolData solData : this.getSolData().values()) {
-            averageTemperature += solData.getAtmosphericTemperature().getSampleAverage();
+            if (solData.getAtmosphericTemperature() == null) continue;
+            temperatureSum += solData.getAtmosphericTemperature().getSampleAverage();
+            sampleCount++;
         }
-        return averageTemperature;
+        return temperatureSum/sampleCount;
     }
 
     public Double getAverageTemperature() throws Exception {
